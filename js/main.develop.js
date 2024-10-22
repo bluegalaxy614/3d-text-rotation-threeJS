@@ -3065,7 +3065,7 @@
                 this.renderer.setPixelRatio(window.devicePixelRatio);
                 this.renderer.setSize(window.innerWidth, window.innerHeight);
                 this.renderer.sortObjects = false;
-                //this.renderer.setClearColor(0x000000, 0);
+                // this.renderer.setClearColor(0x000000, 0);
                 container.appendChild(this.renderer.domElement);
 
                 this.points = [];
@@ -3120,7 +3120,7 @@
                 this.bgExtrasScene.add(this.bgExtrasCam);
 
                 //add background image
-                var bgTexture = new THREE.TextureLoader().load('../img/home-bg.jpg');
+                var bgTexture = new THREE.TextureLoader().load('./img/homeBg.jpg');
                 var bg = new THREE.Mesh(
                     new THREE.PlaneGeometry(2, 2, 0),
                     new THREE.MeshBasicMaterial({ map : bgTexture})
