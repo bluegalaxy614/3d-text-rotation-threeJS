@@ -243,8 +243,8 @@
             // 2. Create a sprite material with the texture
             var spriteMaterial = new THREE.SpriteMaterial({ map: texture });
             particle = new NodePoint(spriteMaterial);
-            width = 20;
-            height = 20;
+            width = 15;
+            height = 15;
         }
         else {
             // Fallback if particleOptions.img is undefined or null
@@ -3093,7 +3093,7 @@
                     {
                         textParams: {
                             fontface: font,
-                            fontsize: 26,
+                            fontsize: 29,
                             backgroundColor: { r: 255, g: 5, b: 5, a: 0 },
                             borderThickness: 24,
                             borderColor: { r: 255, g: 255, b: 255, a: 0 },
