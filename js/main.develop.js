@@ -226,7 +226,7 @@
         var color = groupOptions.baseColor || '#ffffff';
         var hoverColor = groupOptions.hoverColor || '#ffffff';
 
-        var material, hoverMaterial, mutedMaterial;
+        var material, hoverMaterial, mutedMaterial, particle, width, height;
         if (groupOptions.isCV) {
             material = createCVMats(color, 'rgba(5,118,174,0.2)', 'rgba(5,118,174,0.1)', 'rgba(5,118,174,0.02)');
             hoverMaterial = createCVMats(color, 'rgba(5,118,174,0.22)', 'rgba(5,118,174,0.12)', 'rgba(5,118,174,0.02)');
@@ -236,10 +236,26 @@
             hoverMaterial = createCVMats(hoverColor, 'rgba(255,255,255,0.135)', 'rgba(255,255,255,0.04)', 'rgba(255,255,255,0.01)');
         }
 
-        var width = 30;
-        var height = 30;
+        if (particleOptions && particleOptions.img) {
+            var textureLoader = new THREE.TextureLoader();
+            var texture = textureLoader.load(particleOptions.img); // Path to your image file
 
-        var particle = new NodePoint(material);
+            // 2. Create a sprite material with the texture
+            var spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+            particle = new NodePoint(spriteMaterial);
+            width = 20;
+            height = 20;
+        }
+        else {
+            // Fallback if particleOptions.img is undefined or null
+            particle = new NodePoint(material);
+            width = 30;
+            height = 30;
+            // return;
+        }
+
+
+
         particle.material.useScreenCoordinates = true;
         particle.position.x = (Math.random() * 2 - 1);
         particle.position.y = Math.random() * 2 - 1;
@@ -302,6 +318,7 @@
             context.enableImageSmoothing = false;
             context.fillStyle = gradient;
             context.fillRect(0, 0, 256, 256);
+
             var texture = new THREE.Texture(canvas);
             texture.needsUpdate = true;
             //webGL doesnt support Sprite Canvas Material
@@ -2797,40 +2814,40 @@
         var storyPage = backbone.View.extend({
 
             stubData: {
-				hero: {
-					'images': [
-						{
-							'url': '/Users/waqas/Downloads/static/img/content/large/network/hero-network.jpg'
-						},
-						{
-							'url': '/Users/waqas/Downloads/static/img/content/large/responsibility/hero-responsibility.jpg'
-						}
-					],
-					'mobile_images': [
-						{
-							'url': '/Users/waqas/Downloads/static/img/content/large/network/hero-network.jpg'
-						},
-						{
-							'url': '/Users/waqas/Downloads/static/img/content/large/responsibility/hero-responsibility.jpg'
-						}
-					],
-					'title': 'Our Story',
-					'content': 'WME | IMG is committed to bringing the most innovative and creative opportunities to our world-class clients, employees and partners across:',
-					'links': [
-						{ 'value': 'Entertainment', 'url': '/story/entertainment', 'type':'internal' },
-						{ 'value': 'Sports', 'url': '/story/sports', 'type':'internal' },
-						{ 'value': 'Fashion', 'url': '/story/fashion', 'type':'internal' }
-					]
-				},
-				content: {
-					'description': 'From the vanguard beginnings of the William Morris Agency to the advent of modern-day sports marketing by IMG to the bold formation of Endeavor, WME | IMG and its clients have been a force of innovation across entertainment, sports and fashion for over a century. We have helped our clients thrive in the face of disruption while setting trends in talent representation, marketing and sponsorship; inspiring industry change in events and licensing; and helping reshape the digital landscape. As technology further shifts the balance of power in media and puts more power in the hands of the creator, WME | IMG is uniquely positioned at the nexus of entertainment, sports and fashion to create powerful opportunities for our clients and partners across the globe.',
-					'img': {
-						'src_default':'/static/img/body-our-story-timeline_desktop.png',
-						'src_mobile':'/static/img/body-our-story-timeline_mobile.png',
-						'alt':'Our Story Timeline'
-					}
-				}
-			},
+                hero: {
+                    'images': [
+                        {
+                            'url': '/Users/waqas/Downloads/static/img/content/large/network/hero-network.jpg'
+                        },
+                        {
+                            'url': '/Users/waqas/Downloads/static/img/content/large/responsibility/hero-responsibility.jpg'
+                        }
+                    ],
+                    'mobile_images': [
+                        {
+                            'url': '/Users/waqas/Downloads/static/img/content/large/network/hero-network.jpg'
+                        },
+                        {
+                            'url': '/Users/waqas/Downloads/static/img/content/large/responsibility/hero-responsibility.jpg'
+                        }
+                    ],
+                    'title': 'Our Story',
+                    'content': 'WME | IMG is committed to bringing the most innovative and creative opportunities to our world-class clients, employees and partners across:',
+                    'links': [
+                        { 'value': 'Entertainment', 'url': '/story/entertainment', 'type': 'internal' },
+                        { 'value': 'Sports', 'url': '/story/sports', 'type': 'internal' },
+                        { 'value': 'Fashion', 'url': '/story/fashion', 'type': 'internal' }
+                    ]
+                },
+                content: {
+                    'description': 'From the vanguard beginnings of the William Morris Agency to the advent of modern-day sports marketing by IMG to the bold formation of Endeavor, WME | IMG and its clients have been a force of innovation across entertainment, sports and fashion for over a century. We have helped our clients thrive in the face of disruption while setting trends in talent representation, marketing and sponsorship; inspiring industry change in events and licensing; and helping reshape the digital landscape. As technology further shifts the balance of power in media and puts more power in the hands of the creator, WME | IMG is uniquely positioned at the nexus of entertainment, sports and fashion to create powerful opportunities for our clients and partners across the globe.',
+                    'img': {
+                        'src_default': '/static/img/body-our-story-timeline_desktop.png',
+                        'src_mobile': '/static/img/body-our-story-timeline_mobile.png',
+                        'alt': 'Our Story Timeline'
+                    }
+                }
+            },
 
             template: TEMPLATES['story.hbs'],
 
@@ -3017,8 +3034,8 @@
                 this.tickRotate = 0;
                 var container;
                 this.raycaster = new THREE.Raycaster();
-				this.extraParticles = 12;
-				this.backgroundParticleGroups = 12;
+                this.extraParticles = 12;
+                this.backgroundParticleGroups = 12;
                 this.spawnerOptions = {
                     horizontalSpeed: 1.5,
                     verticalSpeed: 1.33,
@@ -3055,11 +3072,9 @@
                 this.camera.position.z = 230;
                 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
                 if (webglAvailable() && !isChrome) {
-                    console.log("I am here")
                     this.renderer = new THREE.WebGLRenderer();
                     this.isWebGL = true;
                 } else {
-                    console.log('I am there')
                     this.renderer = new THREE.CanvasRenderer();
                 }
                 this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -3088,21 +3103,22 @@
                         baseColor: '#ffffff',
                         scale: 2,
                         points: [
-                            { label: '                 books', connections: [], url: 'http://google.com/', cVParents: [1] },
-                            { label: '                comedy', connections: [0], url: '/expertise/comedy', cVParents: [1] },
-                            { label: '           motion picture', connections: [0, 1], url: '/expertise', cVParents: [1] },
-                            { label: '               music', connections: [0], url: '/expertise/music', cVParents: [1] },
-                            { label: '               television', connections: [], url: '/expertise', cVParents: [1] },
-                            { label: '              theater', connections: [3], url: '/expertise', cVParents: [1] },
-                            { label: '             voiceover', connections: [3, 4], url: '/expertise', cVParents: [1] },
-                            { label: '         endorsements', connections: [4, 5], url: '/expertise', cVParents: [1] },
-                            { label: '                  digital', connections: [4, 5, 6], url: '/expertise', cVParents: [1, 2, 3] },
-                            { label: '                  speakers', connections: [5, 6, 7], url: '/expertise', cVParents: [1, 2, 3] },
-                            { label: '                 culinary', connections: [], url: '/expertise', cVParents: [1] },
-                            { label: '                sports', connections: [10], url: '/expertise', cVParents: [1] },
-                            { label: '           brands', connections: [10, 11], url: '/expertise', cVParents: [1] },
-                            { label: '               virtual reality', connections: [10], url: '/expertise', cVParents: [1] },
-                            { label: '               philanthropy', connections: [12, 13], url: '/responsibility', cVParents: [1] }
+                            { label: '          ARTS', connections: [0], url: 'http://google.com/', cVParents: [1], img: './img/ARTS.png' },
+                            { label: '    BRANDED CONTENT', connections: [1], url: '/expertise', cVParents: [1], img: './img/BRAND_CONTENT.png' },
+                            { label: '        CULTURA', connections: [1], url: '/expertise/music', cVParents: [1], img: './img/CULTURA.png' },
+                            { label: '        DIGITAL', connections: [0, 1, 2], url: '/expertise', cVParents: [1], img: './img/DIGITAL.png' },
+                            { label: '       F1', connections: [1, 2, 4], url: '/expertise', cVParents: [1], img: './img/F1.png' },
+                            { label: '      FUTBOL', connections: [2, 5], url: '/expertise', cVParents: [1], img: './img/FUTBOL.png' },
+                            { label: '  MOTOGP', connections: [3, 5, 6], url: '/expertise', cVParents: [1], img: './img/MOTOGP.png' },
+                            { label: '          WELLNESS', connections: [4, 6, 7], url: 'http://google.com/', cVParents: [1], img: './img/WELLNESS.png' },
+                            { label: '          MUSICA', connections: [1, 5, 8], url: 'http://google.com/', cVParents: [1], img: './img/MUSICA.png' },
+                            { label: '          SPORTS', connections: [0, 7, 9], url: 'http://google.com/', cVParents: [1], img: './img/SPORTS.png' },
+                            { label: '          BRANDS', connections: [0, 8, 9], url: 'http://google.com/', cVParents: [1], },
+                            { label: '          BUSINESS', connections: [8, 10], url: 'http://google.com/', cVParents: [1], },
+                            { label: '          STRATEGY', connections: [9, 10, 11], url: 'http://google.com/', cVParents: [1], },
+                            { label: '          INNOVATION', connections: [9, 11, 12], url: 'http://google.com/', cVParents: [1], },
+                            { label: '          COMUNICATION', connections: [10, 13], url: 'http://google.com/', cVParents: [1], },
+
                         ]
                     }
                 ];
@@ -3119,20 +3135,23 @@
                 this.bgExtrasCam.position.z = 420;
                 this.bgExtrasScene.add(this.bgExtrasCam);
 
-                //add background image
-                var bgTexture = new THREE.TextureLoader().load('./img/homeBg.jpg');
+                // //add background image
+                var bgTexture = new THREE.TextureLoader().load('../img/BOLA_MUNDO.png');
                 var bg = new THREE.Mesh(
-                    new THREE.PlaneGeometry(2, 2, 0),
-                    new THREE.MeshBasicMaterial({ map : bgTexture})
+                    new THREE.PlaneGeometry(0.2, 0.2 * window.innerWidth / window.innerHeight, 1, 1),
+                    new THREE.MeshBasicMaterial({ map: bgTexture })
                 );
 
                 bg.material.depthTest = false;
                 bg.material.depthWrite = false;
                 bg.material.overdraw = true; //fixes diagonal line
                 this.bgScene = new THREE.Scene();
+                // bg.position.z = 50
                 this.bgCam = new THREE.Camera();
+                // this.bgCam.position.z = -100
                 this.bgScene.add(this.bgCam);
-                this.bgScene.add(bg);
+                // this.bgScene.add(bg);
+
                 var opacity;
                 if (_this.isWebGL) {
                     opacity = 0.25;
@@ -3157,8 +3176,9 @@
 
                             }
 
-                            defaultText.position.z = 1;
-                            particle.sprite.add(defaultText);
+                            defaultText.position.z = 10;
+                            if (set.points[i].img === undefined)
+                                particle.sprite.add(defaultText);
                         }
 
                         _this.geometry.vertices.push(particle.sprite.position);
@@ -3197,21 +3217,24 @@
                 this.nodes.add(this.plane);
                 this.scene.add(this.nodes);
 
+                // this.earth = this.makeEarth();
+                // this.scene.add(this.earth);
+
                 // makeExtraParticles
-                var lineMaterial = new THREE.LineBasicMaterial({ color: '#ffffff', opacity: opacity, transparent: true });
-                this.extraLineGeometry = new THREE.Geometry();
-                for (var i = 0; i < this.extraParticles; i++) {
-                    var particle = new WebPoint({ scale: 1 });
-                    particle.sprite.material.opacity = 0.4;
-                    particle.sprite.isExtra = true;
-                    _this.geometry.vertices.push(particle.sprite.position);
-                    _this.points.push(particle.sprite);
-                    _this.nodes.add(particle.sprite);
-                    this.extraLineGeometry.vertices.push(particle.sprite.position);
-                }
-                //add line through extra particles
-                var extraLine = new THREE.Line(this.extraLineGeometry, lineMaterial);
-                _this.scene.add(extraLine);
+                // var lineMaterial = new THREE.LineBasicMaterial({ color: '#ffffff', opacity: opacity, transparent: true });
+                // this.extraLineGeometry = new THREE.Geometry();
+                // for (var i = 0; i < this.extraParticles; i++) {
+                //     var particle = new WebPoint({ scale: 1 });
+                //     particle.sprite.material.opacity = 0.4;
+                //     particle.sprite.isExtra = true;
+                //     _this.geometry.vertices.push(particle.sprite.position);
+                //     _this.points.push(particle.sprite);
+                //     _this.nodes.add(particle.sprite);
+                //     this.extraLineGeometry.vertices.push(particle.sprite.position);
+                // }
+                // //add line through extra particles
+                // var extraLine = new THREE.Line(this.extraLineGeometry, lineMaterial);
+                // _this.scene.add(extraLine);
 
                 $(window).on('resize', _this.onWindowResize.bind(_this));
                 this.$('.feat-link').on('click', _this.navigate.bind(_this));
@@ -3683,7 +3706,25 @@
                 var plane = new THREE.Mesh(planeGeometry, planeMaterial);
                 plane.position.z = 50;
                 return plane;
-            }
+            },
+            makeEarth: function () {
+                var width, height;
+                if (window.innerWidth < window.innerHeight) {
+                    width = 190;
+                    height = 230;
+                } else {
+                    width = 240;
+                    height = 150;
+                }
+                var earthGeometry = new THREE.SphereGeometry(25, 64, 32);
+                var textureLoader = new THREE.TextureLoader();
+                var texture = textureLoader.load('./img/earth.jpg'); // Path to your image file
+
+                var earthMaterial = new THREE.MeshBasicMaterial({ map: texture });
+                var earth = new THREE.Mesh(earthGeometry, earthMaterial);
+                earth.position.z = 30;
+                return earth;
+            },
 
         });
 
