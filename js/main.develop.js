@@ -3112,12 +3112,12 @@
                             { label: 'MOTOGP', connections: [3, 5, 6], url: '/expertise', cVParents: [1], img: './img/MOTOGP.png' },
                             { label: 'WELLNESS', connections: [4, 6, 7], url: 'http://google.com/', cVParents: [1], img: './img/WELLNESS.png' },
                             { label: 'MUSICA', connections: [1, 5, 8], url: 'http://google.com/', cVParents: [1], img: './img/MUSICA.png' },
-                            { label: 'SPORTS', connections: [0, 7, 9], url: 'http://google.com/', cVParents: [1], img: './img/SPORTS.png' },
-                            { label: 'BRANDS', connections: [0, 8, 9], url: 'http://google.com/', cVParents: [1], },
+                            { label: 'SPORTS', connections: [2, 7, 9], url: 'http://google.com/', cVParents: [1], img: './img/SPORTS.png' },
+                            { label: 'BRANDS', connections: [3, 8, 9], url: 'http://google.com/', cVParents: [1], },
                             { label: 'BUSINESS', connections: [8, 10], url: 'http://google.com/', cVParents: [1], },
                             { label: 'STRATEGY', connections: [9, 10, 11], url: 'http://google.com/', cVParents: [1], },
-                            { label: 'INNOVATION', connections: [9, 11, 12], url: 'http://google.com/', cVParents: [1], },
-                            { label: 'COMUNICATION', connections: [10, 13], url: 'http://google.com/', cVParents: [1], },
+                            { label: 'INNOVATION', connections: [9, 12], url: 'http://google.com/', cVParents: [1], },
+                            { label: 'COMUNICATION', connections: [11, 13], url: 'http://google.com/', cVParents: [1], },
 
                         ]
                     }
