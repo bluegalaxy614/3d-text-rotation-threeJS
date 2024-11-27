@@ -249,8 +249,8 @@
         else {
             // Fallback if particleOptions.img is undefined or null
             particle = new NodePoint(material);
-            width = 30;
-            height = 30;
+            width = 15;
+            height = 15;
             // return;
         }
 
