@@ -3097,7 +3097,8 @@
                             backgroundColor: { r: 255, g: 5, b: 5, a: 0 },
                             borderThickness: 24,
                             borderColor: { r: 255, g: 255, b: 255, a: 0 },
-                            textColor: { r: 1, g: 85, b: 115, a:1 },
+                            // textColor: { r: 1, g: 85, b: 115, a:1 },
+                            textColor: { r: 255, g: 255, b: 255, a:1 },
 
                         },
                         baseColor: '#ffffff',
