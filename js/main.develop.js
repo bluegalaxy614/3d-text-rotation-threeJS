@@ -3097,10 +3097,6 @@
                             backgroundColor: { r: 255, g: 5, b: 5, a: 0 },
                             borderThickness: 24,
                             borderColor: { r: 255, g: 255, b: 255, a: 0 },
-<<<<<<< HEAD
-                            // textColor: { r: 1, g: 85, b: 115, a:1 },
-=======
->>>>>>> acb5112b609dc5a80f26878e174157378256285b
                             textColor: { r: 255, g: 255, b: 255, a:1 },
 
                         },
@@ -3109,19 +3105,19 @@
                         points: [
                             { label: 'ARTS', connections: [0], url: 'http://google.com/', cVParents: [1], img: './img/ARTS.png' },
                             { label: 'BRANDED CONTENT', connections: [1], url: '/expertise', cVParents: [1], img: './img/BRAND_CONTENT.png' },
-                            { label: 'CULTURA', connections: [0, 2], url: '/expertise/music', cVParents: [1], img: './img/CULTURA.png' },
+                            { label: 'INNOVATION', connections: [0, 2], url: '/expertise/music', cVParents: [1]},
                             { label: 'DIGITAL', connections: [1, 2, 3], url: '/expertise', cVParents: [1], img: './img/DIGITAL.png' },
                             { label: 'F1', connections: [1, 2, 4], url: '/expertise', cVParents: [1], img: './img/F1.png' },
                             { label: 'FUTBOL', connections: [0, 3, 5], url: '/expertise', cVParents: [1], img: './img/FUTBOL.png' },
                             { label: 'MOTOGP', connections: [3, 5, 6], url: '/expertise', cVParents: [1], img: './img/MOTOGP.png' },
-                            { label: 'WELLNESS', connections: [4, 5, 7], url: 'http://google.com/', cVParents: [1], img: './img/WELLNESS.png' },
+                            { label: 'COMMUNICATION', connections: [4, 5, 7], url: 'http://google.com/', cVParents: [1]},
                             { label: 'MUSICA', connections: [4, 5, 8], url: 'http://google.com/', cVParents: [1], img: './img/MUSICA.png' },
                             { label: 'SPORTS', connections: [5, 7, 9], url: 'http://google.com/', cVParents: [1], img: './img/SPORTS.png' },
                             { label: 'BRANDS', connections: [6, 8, 10], url: 'http://google.com/', cVParents: [1], },
                             { label: 'BUSINESS', connections: [8, 9, 11], url: 'http://google.com/', cVParents: [1], },
                             { label: 'STRATEGY', connections: [1, 6, 12], url: 'http://google.com/', cVParents: [1], },
-                            { label: 'INNOVATION', connections: [3, 10, 13], url: 'http://google.com/', cVParents: [1], },
-                            { label: 'COMMUNICATION', connections: [6, 9, 13], url: 'http://google.com/', cVParents: [1], },
+                            // { label: 'INNOVATION', connections: [3, 10, 13], url: 'http://google.com/', cVParents: [1], },
+                            // { label: 'COMMUNICATION', connections: [6, 9, 13], url: 'http://google.com/', cVParents: [1], },
 
                         ]
                     }
