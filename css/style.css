@@ -1440,7 +1440,7 @@ table {
     content: "\e903"
 }
 
-@font-face {
+/* @font-face {
     font-family: "Antenna-EC-Medium-Italic";
     src: url("../fonts/webfont/Antenna-EC-Medium-Italic.woff") format("woff")
 }
@@ -1453,7 +1453,7 @@ table {
 @font-face {
     font-family: "Antenna-EC-Bold";
     src: url("../fonts/webfont/AntennaCond-Bold.woff") format("woff")
-}
+} */
 
 @keyframes menuFadeIn {
     0% {

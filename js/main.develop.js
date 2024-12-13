@@ -3733,7 +3733,8 @@
                 var canvas = document.createElement('canvas');
                 return !!(window.WebGLRenderingContext && (
                     canvas.getContext('webgl') ||
-                    canvas.getContext('experimental-webgl'))
+                    canvas.getContext('experimental-webgl'))||
+                    canvas.getContext('webkit-3d')
                 );
             } catch (e) {
                 return false;
